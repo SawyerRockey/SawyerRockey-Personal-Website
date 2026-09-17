@@ -1,0 +1,277 @@
+/* Loaded AFTER Bootstrap in every page's <head>, so rules here win over
+ */
+
+/* my pallette i made if you cant tell theyre the exact colours from my sketch precise much? heheheeheahahSHDUAHUSDHUASHDHASHDHA */
+:root {
+  --color-header-footer: #06060A;
+  --color-nav: #2E2E32;
+  --color-bg: #16161B;
+  --color-text: #FFFFFF;
+  --color-accent: #ef4001;
+  --sidebar-width: 220px;
+  --title-bar-height: 4.5rem;
+}
+
+/* ELEMENT SELECTOR  applies to every element*/
+body {
+  margin: 0;
+  margin-left: var(--sidebar-width);
+  margin-top: var(--title-bar-height);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Varela Round, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ELEMENT SELECTOR */
+h1, h2, h3, h4 {
+  font-family: Varela Round, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ELEMENT SELECTOR  bevel + drop shadow on every picture on the site
+    */
+img {
+  border-radius: 8px;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* CLASS SELECTOR  floats the profile photo to the top-right of the
+   content column, letting text wrap around it and flow underneath
+   once it runs out of room beside the image. */
+.profile-photo {
+  float: right;
+  width: 40%;
+  max-width: 320px;
+  min-width: 140px;
+  height: auto;
+  object-fit: cover;
+  margin: 0 0 1.5rem 1.5rem;
+}
+
+/* ELEMENT SELECTOR. */
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* header left with nav */
+
+/* CLASS SELECTOR  the big full-width bar holding the page's own
+   title (the h1), plus the mobile nav toggle. A 3 column grid with
+   two equal side tracks keeps the title centered whether or not the
+   toggle button is sitting in the third column. */
+.page-title-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--title-bar-height);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 1rem;
+  padding: 0 2rem;
+  background-color: var(--color-header-footer);
+  box-sizing: border-box;
+  z-index: 40;
+}
+
+.page-title-bar h1 {
+  grid-column: 2;
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.page-title-bar .navbar-toggler {
+  grid-column: 3;
+  justify-self: end;
+}
+
+/* ELEMENT SELECTOR  sidebar on big screens, collapses into a normal
+   top bar on small ones (see the max-width media query down below).
+   Sits below .page-title-bar rather than at the very top. */
+header {
+  position: fixed;
+  top: var(--title-bar-height);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-header-footer);
+  box-sizing: border-box;
+  z-index: 30;
+}
+
+/* idk maybe you want to outline the nav bar but i didnt after testing */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0);
+}
+
+/* more nav stiff */
+header nav {
+  flex: 1;
+  background-color: var(--color-nav);
+  padding: 1rem 0.75rem;
+  overflow-y: auto;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav li {
+  margin-bottom: 0.75rem;
+}
+
+header nav a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+header nav a[aria-current="page"] {
+  background-color: var(--color-bg);
+  font-weight: 700;
+}
+
+/* the little smiley pinned to the bottom of the nav column. */
+.nav-smile {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  align-self: flex-start;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* main stuff plus footer */
+
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+footer {
+  background-color: var(--color-header-footer);
+  padding: 1rem 2rem;
+}
+
+footer p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+/* hobby card boxes things */
+
+/* box-model + border/shadow (beveled edges are in trust)
+these now live inside bootstrap's .row/.col grid they sit side by side 
+flex-direction is column now, image on top */
+.card,
+.project {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.5rem;
+  background-color: var(--color-header-footer);
+  color: var(--color-text);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card img,
+.project img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  /* img-fluid also caps max-width:100%;
+     height:auto here is what keeps each photo at its own natural
+     aspect ratio instead of being stretched or cropped to match. */
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body h3,
+.card-body h4 {
+  margin-top: 0;
+}
+
+.card-body .button {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* buddins */
+
+/* CLASS SELECTOR */
+.button {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  background-color: var(--color-accent);
+  color: #06060A;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #ffffff;
+  color: #06060A;
+  text-decoration: none;
+}
+
+/* responsive sidebar  top bar switch, keyed to bootstrap's own lg
+   breakpoint at 992px, but you can read, its like right below this so it linesd up */
+@media (min-width: 992px) {
+  #mainNav {
+    height: 100%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  body {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .page-title-bar {
+    position: static;
+    height: auto;
+    padding: 1rem;
+  }
+
+  header {
+    position: static;
+    width: 100%;
+    height: auto;
+    bottom: auto;
+  }
+
+  #mainNav.show {
+    max-height: 70vh;
+  }
+}
